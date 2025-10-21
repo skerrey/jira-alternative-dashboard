@@ -1,0 +1,39 @@
+.column {
+  background-color: #f4f5f7;
+  border-radius: 3px;
+  min-width: 280px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 200px);
+}
+
+.column-header {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.column-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #172b4d;
+  text-transform: uppercase;
+}
+
+.issue-count {
+  background-color: #dfe1e6;
+  color: #42526e;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.column-content {
+  padding: 0 12px 12px;
+  overflow-y: auto;
+  flex: 1;
+}
+

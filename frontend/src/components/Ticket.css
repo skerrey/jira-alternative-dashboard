@@ -1,0 +1,66 @@
+.ticket {
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.ticket:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ticket-key {
+  font-size: 12px;
+  color: #5e6c84;
+  font-weight: 600;
+}
+
+.ticket-type {
+  font-size: 11px;
+  color: #5e6c84;
+  background-color: #dfe1e6;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.ticket-summary {
+  font-size: 14px;
+  color: #172b4d;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.ticket-assignee {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.assignee-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.assignee-name {
+  font-size: 12px;
+  color: #5e6c84;
+}
+
+.ticket-priority {
+  font-size: 11px;
+  color: #5e6c84;
+  margin-top: 6px;
+}
+

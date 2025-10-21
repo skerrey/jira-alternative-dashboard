@@ -3,41 +3,9 @@ import axios from "axios";
 import Board from "./components/Board";
 import SearchBar from "./components/SearchBar";
 import UserFilter from "./components/UserFilter";
+import { Column, User, Issue } from "./interfaces";
 
-interface Column {
-  id: string;
-  name: string;
-}
-
-interface User {
-  accountId: string;
-  displayName: string;
-}
-
-interface Issue {
-  id: string;
-  key: string;
-  fields: {
-    summary: string;
-    status: {
-      name: string;
-    };
-    assignee?: {
-      displayName: string;
-      avatarUrls?: {
-        "24x24": string;
-      };
-    };
-    priority?: {
-      name: string;
-    };
-    issuetype?: {
-      name: string;
-    };
-  };
-}
-
-function App() {
+const App = () => {
   const [columns, setColumns] = useState<Column[]>([]);
   const [issues, setIssues] = useState<Issue[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -67,6 +35,8 @@ function App() {
       setLoading(false);
     }
   };
+
+  console.log(columns);
 
   const fetchIssues = async () => {
     try {
@@ -108,7 +78,7 @@ function App() {
       <Board columns={columns} issues={issues} />
     </div>
   );
-}
+};
 
 export default App;
 

@@ -1,11 +1,7 @@
 import React from "react";
+import { SearchBarProps } from "../interfaces";
 
-interface SearchBarProps {
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
-}
-
-function SearchBar({ searchQuery, setSearchQuery }: SearchBarProps) {
+const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
   return (
     <div className="flex-1 max-w-[400px]">
       <input
@@ -17,7 +13,7 @@ function SearchBar({ searchQuery, setSearchQuery }: SearchBarProps) {
       />
     </div>
   );
-}
+};
 
 export default SearchBar;
 

@@ -1,33 +1,7 @@
 import React from "react";
+import { TicketProps } from "../interfaces";
 
-interface Issue {
-  id: string;
-  key: string;
-  fields: {
-    summary: string;
-    status: {
-      name: string;
-    };
-    assignee?: {
-      displayName: string;
-      avatarUrls?: {
-        "24x24": string;
-      };
-    };
-    priority?: {
-      name: string;
-    };
-    issuetype?: {
-      name: string;
-    };
-  };
-}
-
-interface TicketProps {
-  issue: Issue;
-}
-
-function Ticket({ issue }: TicketProps) {
+const Ticket = ({ issue }: TicketProps) => {
   const { fields } = issue;
   
   return (
@@ -58,7 +32,7 @@ function Ticket({ issue }: TicketProps) {
       )}
     </div>
   );
-}
+};
 
 export default Ticket;
 

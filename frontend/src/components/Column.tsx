@@ -1,40 +1,8 @@
 import React from "react";
 import Ticket from "./Ticket";
+import { ColumnProps } from "../interfaces";
 
-interface Issue {
-  id: string;
-  key: string;
-  fields: {
-    summary: string;
-    status: {
-      name: string;
-    };
-    assignee?: {
-      displayName: string;
-      avatarUrls?: {
-        "24x24": string;
-      };
-    };
-    priority?: {
-      name: string;
-    };
-    issuetype?: {
-      name: string;
-    };
-  };
-}
-
-interface Column {
-  id: string;
-  name: string;
-}
-
-interface ColumnProps {
-  column: Column;
-  issues: Issue[];
-}
-
-function Column({ column, issues }: ColumnProps) {
+const Column = ({ column, issues }: ColumnProps) => {
   return (
     <div className="bg-gray-100 rounded min-w-[280px] max-w-[280px] flex flex-col max-h-[calc(100vh-200px)]">
       <div className="p-3 flex justify-between items-center">
@@ -48,7 +16,7 @@ function Column({ column, issues }: ColumnProps) {
       </div>
     </div>
   );
-}
+};
 
 export default Column;
 

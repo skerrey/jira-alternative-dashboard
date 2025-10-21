@@ -20,31 +20,33 @@ router.get("/columns", async (req, res) => {
     const response = await jiraClient.get(`/rest/api/3/project/${process.env.JIRA_PROJECT_KEY}/statuses`);
     const statuses = response.data[0]?.statuses || [];
     
-    // Define custom column order
-    const columnOrder = [
-      "todo",
-      "ready for dev",
-      "in progress",
-      "testing",
-      "staging",
-      "ready to deploy",
-      "done"
-    ];
+    // Define custom column order mapping
+    const columnOrderMap = {
+      "to do": 0,
+      "analysis": 1,
+      "selected for dev": 2,
+      "in dev": 3,
+      "unit testing": 4,
+      "sit": 5,
+      "uat": 6,
+      "ready for deploy": 7,
+      "done": 8
+    };
     
     // Sort statuses based on custom order
     const sortedStatuses = statuses.sort((a, b) => {
-      const aIndex = columnOrder.findIndex(col => a.name.toLowerCase() === col);
-      const bIndex = columnOrder.findIndex(col => b.name.toLowerCase() === col);
+      const aOrder = columnOrderMap[a.name.toLowerCase()];
+      const bOrder = columnOrderMap[b.name.toLowerCase()];
       
-      // If both are in the order array, sort by their position
-      if (aIndex !== -1 && bIndex !== -1) {
-        return aIndex - bIndex;
+      // If both are in the order map, sort by their position
+      if (aOrder !== undefined && bOrder !== undefined) {
+        return aOrder - bOrder;
       }
-      // If only a is in the order array, it comes first
-      if (aIndex !== -1) return -1;
-      // If only b is in the order array, it comes first
-      if (bIndex !== -1) return 1;
-      // If neither is in the order array, maintain original order
+      // If only a is in the order map, it comes first
+      if (aOrder !== undefined) return -1;
+      // If only b is in the order map, it comes first
+      if (bOrder !== undefined) return 1;
+      // If neither is in the order map, maintain original order
       return 0;
     });
     

@@ -1,17 +1,7 @@
 import React from "react";
+import { UserFilterProps } from "../interfaces";
 
-interface User {
-  accountId: string;
-  displayName: string;
-}
-
-interface UserFilterProps {
-  users: User[];
-  selectedUser: string;
-  setSelectedUser: (userId: string) => void;
-}
-
-function UserFilter({ users, selectedUser, setSelectedUser }: UserFilterProps) {
+const UserFilter = ({ users, selectedUser, setSelectedUser }: UserFilterProps) => {
   return (
     <div className="min-w-[200px]">
       <select 
@@ -28,7 +18,7 @@ function UserFilter({ users, selectedUser, setSelectedUser }: UserFilterProps) {
       </select>
     </div>
   );
-}
+};
 
 export default UserFilter;
 

@@ -1,0 +1,12 @@
+{
+  "name": "jira-alternative-dashboard",
+  "version": "1.0.0",
+  "description": "Jira alternative dashboard - full stack application",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "start": "cd backend && node server.js",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm start"
+  },
+  "private": true
+}

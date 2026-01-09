@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
+import apiClient from "./utils/api";
 import Board from "./components/Board";
 import SearchBar from "./components/SearchBar";
 import UserFilter from "./components/UserFilter";
@@ -29,7 +29,7 @@ const App = () => {
         params.search = searchQuery;
       }
       
-      const response = await axios.get<Issue[]>("/api/jira/issues", { params });
+      const response = await apiClient.get<Issue[]>("/api/jira/issues", { params });
       setIssues(response.data);
     } catch (error) {
       console.error("Error fetching issues:", error);
@@ -48,8 +48,8 @@ const App = () => {
   const fetchInitialData = async () => {
     try {
       const [columnsRes, usersRes] = await Promise.all([
-        axios.get<Column[]>("/api/jira/columns"),
-        axios.get<User[]>("/api/jira/users")
+        apiClient.get<Column[]>("/api/jira/columns"),
+        apiClient.get<User[]>("/api/jira/users")
       ]);
       setColumns(columnsRes.data);
       setUsers(usersRes.data);
@@ -62,7 +62,7 @@ const App = () => {
 
   const fetchProjectName = async () => {
     try {
-      const response = await axios.get<string>("/api/jira/project");
+      const response = await apiClient.get<string>("/api/jira/project");
       setProjectName(`${response.data} Dashboard`);
     } catch (error) {
       console.error("Error fetching project name:", error);

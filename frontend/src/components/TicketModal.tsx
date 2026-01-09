@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
+import apiClient from "../utils/api";
 import { TicketModalProps, Issue, Comment } from "../interfaces";
 import { getPriorityColor } from "../utils/getPriorityColor";
-import { FaUser, FaUserCircle, FaFlag, FaTag, FaCalendar, FaClock, FaCheckCircle, FaTimes, FaComments } from "react-icons/fa";
+import { FaUser, FaUserCircle, FaFlag, FaTag, FaCalendar, FaClock, FaTimes, FaComments } from "react-icons/fa";
 
 const TicketModal = ({ issue, onClose }: TicketModalProps) => {
   const [fullIssue, setFullIssue] = useState<Issue | null>(null);
@@ -13,7 +13,7 @@ const TicketModal = ({ issue, onClose }: TicketModalProps) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get<Issue>(`/api/jira/issue/${issueKey}`);
+      const response = await apiClient.get<Issue>(`/api/jira/issue/${issueKey}`);
       setFullIssue(response.data);
     } catch (err: any) {
       console.error("Error fetching issue details:", err);

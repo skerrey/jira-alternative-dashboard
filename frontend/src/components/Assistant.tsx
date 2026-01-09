@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaComments, FaTimes, FaPaperPlane } from "react-icons/fa";
-import axios from "axios";
+import apiClient from "../utils/api";
 import { Message, Issue } from "../interfaces";
 
 interface AssistantProps {
@@ -91,7 +91,7 @@ const Assistant = ({ onHighlightTicket, issues = [] }: AssistantProps) => {
     // Fetch initial usage stats
     const fetchUsageStats = async () => {
       try {
-        const response = await axios.get("/api/assistant/usage");
+        const response = await apiClient.get("/api/assistant/usage");
         setRemainingAttempts(response.data.remaining || 10);
       } catch (error) {
         console.error("Error fetching usage stats:", error);
@@ -126,7 +126,7 @@ const Assistant = ({ onHighlightTicket, issues = [] }: AssistantProps) => {
           content: m.content
         }));
 
-        const response = await axios.post("/api/assistant/chat", {
+        const response = await apiClient.post("/api/assistant/chat", {
           message: suggestion,
           sessionId: "default",
           conversationHistory
@@ -194,7 +194,7 @@ const Assistant = ({ onHighlightTicket, issues = [] }: AssistantProps) => {
           content: m.content
         }));
 
-        const response = await axios.post("/api/assistant/chat", {
+        const response = await apiClient.post("/api/assistant/chat", {
           message: userMessage.content,
           sessionId: "default",
           conversationHistory
